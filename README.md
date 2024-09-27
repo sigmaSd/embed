@@ -1,6 +1,7 @@
 # File Embedder
 
-This tool allows you to embed files and directories into scripting languages like JavaScript and Python.
+This tool allows you to embed files and directories into scripting languages
+like JavaScript and Python.
 
 # How it works
 
@@ -12,8 +13,8 @@ The File Embedder works by:
 4. Creating utility functions for easy access
 5. Outputting the result in the chosen language
 
-This approach allows efficient embedding and retrieval
-of file contents within scripts.
+This approach allows efficient embedding and retrieval of file contents within
+scripts.
 
 ## Features
 
@@ -26,7 +27,7 @@ of file contents within scripts.
 ## Usage
 
 ```bash
-deno run --allow-read --allow-write embed.ts <input_file_or_directory> <input_file2> [...] --lang <js|py>
+deno run --allow-read --allow-writes jsr:@sigma/embed <input_file_or_directory> <input_file2> [...] --lang <js|py>
 ```
 
 ### Options
@@ -37,7 +38,8 @@ deno run --allow-read --allow-write embed.ts <input_file_or_directory> <input_fi
 
 ## Output
 
-The tool generates a file named `embedded_files.<lang>` in the current directory. This file contains:
+The tool generates a file named `embedded_files.<lang>` in the current
+directory. This file contains:
 
 - A nested object structure representing the embedded files and directories
 - Utility functions to access the embedded data
@@ -53,17 +55,32 @@ For JavaScript, the output file exports an object with:
 ## Example
 
 ```bash
-deno run --allow-read --allow-write embed.ts ./assets --lang js
+deno run --allow-read --allow-write jsr:@sigma/embed ./assets --lang js
 ```
 
-This command will embed all files in the `./assets` directory into a file named `embedded_files.js`.
+This command will embed all files in the `./assets` directory into a file named
+`embedded_files.js`.
 
 You can now use it like this:
+
+## Examples
+
+**Example 1**
 
 ```js
 import $ from "./embedded_files.js";
 
 console.log($.get($.files.assets.file1));
+```
+
+# Library
+
+This tool can also be used as a library.
+
+```ts
+import { embedFiles } from "jsr:@sigma/embed";
+
+await embedFiles(["./assets"], "js");
 ```
 
 ## License
