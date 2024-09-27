@@ -1,0 +1,6 @@
+{
+  "name": "@sigma/embed",
+  "version": "0.0.1",
+  "exports": "./embed.ts",
+  "license": "MIT"
+}
