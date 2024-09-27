@@ -24,7 +24,7 @@ Deno.test("it works", async () => {
   Deno.writeTextFileSync(
     "user_code.js",
     `\
-  import { files } from "./embedded_files.js";
+  import $ from "./embedded_files.js";
 
   function assertArraysEqual(arr1, arr2) {
       if (arr1.length !== arr2.length) {
@@ -38,8 +38,12 @@ Deno.test("it works", async () => {
       }
   }
 
-  assertArraysEqual(files.get("${testFilePath1}"), new TextEncoder().encode("${testContent1}"));
-  assertArraysEqual(files.get("${testFilePath2}"), Deno.readFileSync(Deno.execPath()));`,
+  assertArraysEqual($.get($.files["${testFilePath1}"]), new TextEncoder().encode("${testContent1}"));
+  assertArraysEqual($.get($.files${
+      '["/"]' + testFilePath2
+        .split("/")
+        .map((part) => `["${part}"]`).slice(1).join("")
+    }), Deno.readFileSync(Deno.execPath()));`,
   );
 
   const process = new Deno.Command(Deno.execPath(), {
