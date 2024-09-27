@@ -66,7 +66,7 @@ You can now use it like this:
 ```js
 import $ from "./embedded_files.js";
 
-console.log($.get($.files.assets.file1));
+console.log($.getString($.files.assets.file1));
 ```
 
 # Library
